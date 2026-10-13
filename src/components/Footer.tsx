@@ -48,7 +48,9 @@ export const Footer: React.FC<FooterProps> = ({
               <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600 font-bold font-heading text-lg shrink-0 overflow-hidden shadow-xs">
                 {businessInfo.logoUrl ? (
                   <img
-                    src={businessInfo.logoUrl}
+                    src={businessInfo.logoUrl.startsWith('/') && !businessInfo.logoUrl.startsWith('//')
+                      ? `${import.meta.env.BASE_URL}${businessInfo.logoUrl.slice(1)}`
+                      : businessInfo.logoUrl}
                     alt={businessInfo.name || "Rajeshwar Steel Industries"}
                     className="w-full h-full object-contain p-0.5"
                   />

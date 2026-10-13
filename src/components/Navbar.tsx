@@ -107,13 +107,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-blue-600 font-bold font-heading text-lg sm:text-xl shadow-xs group-hover:border-blue-400 transition-colors shrink-0 overflow-hidden p-1">
               {businessInfo.logoUrl ? (
                 <img
-                  src={businessInfo.logoUrl}
+                  src={businessInfo.logoUrl.startsWith('/') && !businessInfo.logoUrl.startsWith('//')
+                    ? `${import.meta.env.BASE_URL}${businessInfo.logoUrl.slice(1)}`
+                    : businessInfo.logoUrl}
                   alt={businessInfo.name || "Rajeshwar Steel Industries"}
                   className="w-full h-full object-contain"
                 />
               ) : (
                 <img
-                  src="/logo.svg"
+                  src={`${import.meta.env.BASE_URL}logo.svg`}
                   alt={businessInfo.name || "Rajeshwar Steel Industries"}
                   className="w-full h-full object-contain"
                   onError={(e) => {
